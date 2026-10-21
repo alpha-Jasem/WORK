@@ -2,10 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>آرك الماسية العقارية | شقق وملاحق للبيع في أحياء جدة</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>آرك الماسية العقارية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="آرك الماسية العقارية: مشاريع سكنية في أحياء جدة المختارة بأسعار ووحدات محدّثة، وضمانات على الهيكل والتمديدات، وخدمات ما بعد البيع.">
-<meta name="theme-color" content="#0b1f3a">
+<meta name="theme-color" content="#070c18">
 <meta property="og:locale" content="ar_SA">
 <meta property="og:type" content="website">
 <meta property="og:title" content="آرك الماسية العقارية | شقق وملاحق للبيع في أحياء جدة">
@@ -13,7 +14,7 @@
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&family=Readex+Pro:wght@300..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"RealEstateAgent","name":"آرك الماسية العقارية","areaServed":"جدة","telephone":"+966500000000"}
@@ -21,242 +22,255 @@
 </head>
 <body>
 
-<header class="header" id="top">
-  <div class="container nav">
-    <a href="#top" class="brand" aria-label="آرك الماسية العقارية">
-      <img src="assets/logo.svg" alt="" width="44" height="44">
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-in">
+    <svg viewBox="0 0 64 64"><path d="M32 6 56 24 32 58 8 24Z M8 24h48 M20 24 32 6l12 18 M20 24l12 34 12-34"/></svg>
+    <span>آرك الماسية</span>
+  </div>
+</div>
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="آرك الماسية العقارية، الصفحة الرئيسية">
+      <img src="assets/logo.svg" alt="" width="40" height="40">
       <span><b>آرك الماسية</b><small>العقارية</small></span>
     </a>
-    <nav id="menu" class="menu" aria-label="القائمة الرئيسية">
-      <a href="#top">الرئيسية</a>
+    <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
       <a href="#projects">المشاريع</a>
       <a href="#districts">الأحياء</a>
       <a href="#about">عن آرك</a>
+      <a href="#journey">رحلتك معنا</a>
       <a href="#news">الأخبار</a>
       <a href="#contact">تواصل معنا</a>
     </nav>
-    <a class="btn btn-ghost nav-tel" href="tel:+966500000000" dir="ltr">050 000 0000</a>
-    <a class="btn btn-gold nav-cta" href="#contact">احجز زيارة</a>
-    <button class="burger" id="burger" aria-label="القائمة" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <span class="hdr-tel tnum">050 000 0000</span>
+    <a class="btn btn-gold magnetic js-visit" href="#contact">احجز زيارة</a>
+    <button class="burger" id="burger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="nav"><i></i></button>
   </div>
 </header>
 
-<main>
+<main id="top">
+
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="container hero-inner">
-    <p class="eyebrow">آرك الماسية العقارية · جدة</p>
-    <h1>بيتك القادم في <em>أحياء جدة المختارة</em></h1>
-    <p class="lead">شقق وملاحق بتصاميم معاصرة، مع ضمانات للهيكل الإنشائي والتمديدات، وخدمات ما بعد البيع تبدأ باتحاد الملّاك.</p>
-    <div class="hero-cta">
-      <a class="btn btn-gold" href="#find">ابحث عن وحدتك</a>
-      <a class="btn btn-ghost" id="heroVisit" href="#contact">احجز زيارة</a>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow" data-intro>آرك الماسية العقارية · جدة</p>
+      <h1 class="h1" id="heroTitle">بيتك القادم في <em>أحياء جدة المختارة</em></h1>
+      <p class="lead" data-intro>شقق وملاحق بتصاميم معاصرة، بضمانات على الهيكل الإنشائي والتمديدات، وخدمات ما بعد البيع تبدأ باتحاد الملّاك.</p>
+      <div class="hero-cta" data-intro>
+        <a class="btn btn-gold magnetic" href="#find">ابحث عن وحدتك</a>
+        <a class="btn btn-line magnetic js-visit" href="#contact">احجز زيارة</a>
+      </div>
+    </div>
+    <div class="hero-meta" data-intro>
+      <span class="cue"><i></i>مرّر للاستكشاف</span>
+      <span class="coord tnum">21.4858° N · 39.1925° E</span>
+      <span>جدة، المملكة العربية السعودية</span>
     </div>
   </div>
 </section>
 
 <section class="finder" id="find" aria-label="البحث عن وحدة">
-  <div class="container">
+  <div class="wrap">
     <form class="search" id="searchForm" role="search">
-      <label>الحي
-        <select name="district" id="fDistrict"><option value="">كل الأحياء</option></select>
-      </label>
-      <label>حالة المشروع
-        <select name="status">
-          <option value="">كل الحالات</option>
-          <option value="selling">بدأ البيع</option>
-          <option value="new">إطلاقات جديدة</option>
-          <option value="soldout">تم البيع بالكامل</option>
-        </select>
-      </label>
-      <label>عدد الغرف
-        <select name="rooms">
+      <div class="field"><label for="fDistrict">الحي</label>
+        <select id="fDistrict" name="district"><option value="">كل الأحياء</option></select></div>
+      <div class="field"><label for="fStatus">حالة المشروع</label>
+        <select id="fStatus" name="status">
+          <option value="">كل الحالات</option><option value="selling">بدأ البيع</option><option value="new">إطلاقات جديدة</option><option value="soldout">مكتمل البيع</option>
+        </select></div>
+      <div class="field"><label for="fRooms">عدد الغرف</label>
+        <select id="fRooms" name="rooms">
           <option value="">أي عدد</option><option value="2">غرفتان</option><option value="3">3 غرف</option><option value="4">4 غرف فأكثر</option>
-        </select>
-      </label>
-      <label>الميزانية
-        <select name="budget">
-          <option value="">بلا حد</option>
-          <option value="450000">حتى 450 ألف ريال</option>
-          <option value="650000">حتى 650 ألف ريال</option>
-          <option value="1000000">حتى 1 مليون ريال</option>
-          <option value="1500000">حتى 1.5 مليون ريال</option>
-        </select>
-      </label>
+        </select></div>
+      <div class="field"><label for="fBudget">الميزانية</label>
+        <select id="fBudget" name="budget">
+          <option value="">بلا حد</option><option value="450000">حتى 450 ألف ريال</option><option value="650000">حتى 650 ألف ريال</option><option value="1000000">حتى مليون ريال</option><option value="1500000">حتى 1.5 مليون ريال</option><option value="2000000">حتى مليوني ريال</option>
+        </select></div>
       <button class="btn btn-gold" type="submit">اعرض النتائج</button>
     </form>
-    <p class="count"><strong id="availCount">0</strong> وحدة متاحة الآن</p>
+    <div class="result"><span><b class="tnum" id="availCount">0</b> وحدة متاحة الآن تطابق بحثك</span><a href="#projects">استعرض المشاريع</a></div>
   </div>
 </section>
 
-<section class="section" id="projects">
-  <div class="container">
-    <div class="section-head row">
+<section class="manifesto" id="about">
+  <div class="wrap">
+    <p class="eyebrow">عن آرك الماسية</p>
+    <p class="mf" id="manifesto">نطوّر مشاريع سكنية في أحياء جدة، ونجمع التطوير والبناء والتسويق والتشغيل تحت سقف واحد، <em>ثم نبقى مع ملّاكها بعد الاستلام.</em></p>
+    <div class="mf-foot">
+      <p>تتولى آرك الماسية المشروع من اختيار الأرض حتى تشغيل المبنى، وتواصل خدمة الملّاك عبر اتحاد الملّاك والصيانة الدورية.</p>
+      <a class="btn btn-line magnetic" href="#journey">رحلتك معنا</a>
+    </div>
+  </div>
+</section>
+
+<section aria-label="أرقام آرك">
+  <div class="wrap">
+    <div class="stats" id="stats">
+      <div class="stat"><strong class="num tnum" data-stat="projects">0</strong><span>مشروعًا سكنيًا</span></div>
+      <div class="stat"><strong class="num tnum" data-stat="buildings">0</strong><span>مبنى</span></div>
+      <div class="stat"><strong class="num tnum" data-stat="apts">0</strong><span>وحدة سكنية</span></div>
+      <div class="stat"><strong class="num tnum" data-stat="avail">0</strong><span>وحدة متاحة الآن</span></div>
+    </div>
+    <p class="fine">الأرقام محسوبة من بيانات المشاريع المعروضة في هذه الصفحة.</p>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="proj-in">
+    <div class="wrap">
+      <div class="proj-head">
+        <div>
+          <p class="eyebrow">الإطلاقات الحالية</p>
+          <h2 class="h2">مشاريع متاحة للحجز الآن</h2>
+          <p class="sub">اختر المشروع لمعرفة الوحدات المتاحة والأسعار وطلب المخططات.</p>
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="تصفية حسب حالة المشروع">
+          <button class="chip active" type="button" data-f="">الكل</button>
+          <button class="chip" type="button" data-f="selling">بدأ البيع</button>
+          <button class="chip" type="button" data-f="new">إطلاقات جديدة</button>
+          <button class="chip" type="button" data-f="soldout">مكتمل البيع</button>
+        </div>
+      </div>
+    </div>
+    <div class="viewport" id="viewport">
+      <div class="track" id="track"></div>
+    </div>
+    <div class="wrap">
+      <p class="empty" id="empty" hidden>لا توجد مشاريع تطابق هذا البحث حاليًا. غيّر الحي أو الميزانية، أو تواصل معنا ونرشّح لك الأنسب.</p>
+      <div class="pbar" aria-hidden="true"><i id="pbar"></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="band solid" id="districts">
+  <div class="wrap">
+    <p class="eyebrow">اختر حيّك</p>
+    <h2 class="h2">مشاريعنا في أحياء جدة</h2>
+    <p class="sub" style="margin-bottom:44px">اختر الحي لعرض مشاريعه ووحداته المتاحة.</p>
+    <div class="dlist" id="dlist"></div>
+  </div>
+</section>
+
+<section class="band solid" id="journey">
+  <div class="wrap">
+    <div class="jhead">
       <div>
-        <p class="eyebrow">الإطلاقات الحالية</p>
-        <h2>مشاريع متاحة للحجز الآن</h2>
-        <p class="sub">اختر المشروع لاستعراض الوحدات والمخططات والأسعار.</p>
+        <p class="eyebrow">رحلتك مع آرك</p>
+        <h2 class="h2">من اختيار الوحدة حتى ما بعد الاستلام</h2>
       </div>
-      <div class="chips" id="chips" role="group" aria-label="تصفية المشاريع">
-        <button class="chip active" data-f="">الكل</button>
-        <button class="chip" data-f="selling">بدأ البيع</button>
-        <button class="chip" data-f="new">إطلاقات جديدة</button>
-        <button class="chip" data-f="soldout">مكتمل البيع</button>
-      </div>
+      <p class="sub">خمس خطوات واضحة يرافقك فيها فريقنا، من أول تصفّح حتى السنة الأولى في بيتك.</p>
     </div>
-    <div class="cards" id="cards"></div>
-    <p class="empty" id="empty" hidden>لا توجد مشاريع مطابقة حاليًا — تواصل معنا ونوفّر لك ما يناسبك.</p>
-  </div>
-</section>
-
-<section class="section alt" id="districts">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">اختر حيّك</p>
-      <h2>مشاريعنا في أحياء جدة</h2>
-      <p class="sub">تصفّح المشاريع والوحدات المتاحة في الحي الذي يناسبك.</p>
-    </div>
-    <div class="grid3" id="districtGrid"></div>
-  </div>
-</section>
-
-<section class="stats" aria-label="أرقامنا">
-  <div class="container stats-grid">
-    <div><strong data-count="12">0</strong><span>مشروعًا سكنيًا</span></div>
-    <div><strong data-count="30">0</strong><span>مبنى</span></div>
-    <div><strong data-count="500">0</strong><span>وحدة سكنية</span></div>
-    <div><strong id="statAvail">0</strong><span>وحدة متاحة الآن</span></div>
-  </div>
-</section>
-
-<section class="section" id="about">
-  <div class="container about">
-    <div class="about-visual" aria-hidden="true"><img src="assets/logo.svg" alt="" width="180" height="180"></div>
-    <div>
-      <p class="eyebrow">عن آرك الماسية</p>
-      <h2>نطوّر مشاريع سكنية في جدة، ونبقى مع ملّاكها بعد الاستلام</h2>
-      <p>آرك الماسية العقارية شركة تطوير عقاري في جدة، تجمع التطوير والبناء والتسويق والتشغيل تحت سقف واحد، وتواصل خدمة ملّاكها بعد التسليم عبر اتحاد الملّاك والصيانة.</p>
-      <ul class="ticks">
-        <li>استغلال المساحات بما يفيد الساكن</li>
-        <li>شفافية كاملة في الأسعار والعقود</li>
-        <li>منظومة عقارية ذكية ومستدامة</li>
-        <li>التزام بالجودة والثقة المتبادلة</li>
-      </ul>
-      <a href="#contact" class="btn btn-navy">تحدث مع مستشارنا</a>
-    </div>
-  </div>
-</section>
-
-<section class="section alt" id="journey">
-  <div class="container">
-    <div class="section-head center">
-      <p class="eyebrow">رحلتك مع آرك</p>
-      <h2>من اختيار الوحدة حتى ما بعد الاستلام</h2>
-      <p class="sub">خطوات واضحة يرافقك فيها فريقنا في كل مرحلة.</p>
-    </div>
-    <ol class="steps">
-      <li><span>01</span><h3>اختر</h3><p>تصفّح المشاريع حسب الحي وعدد الغرف والميزانية، واطّلع على الأسعار والمخططات.</p></li>
-      <li><span>02</span><h3>زُر</h3><p>احجز زيارة للمشروع مع مستشار المبيعات في الموعد الذي يناسبك.</p></li>
-      <li><span>03</span><h3>احجز</h3><p>اختر وحدتك وأكمل إجراءات الحجز والتعاقد بوضوح مع فريق المبيعات.</p></li>
-      <li><span>04</span><h3>استلم</h3><p>استلم وحدتك مع ضمانات للهيكل الإنشائي والتمديدات والقواطع.</p></li>
-      <li><span>05</span><h3>ما بعد البيع</h3><p>اتحاد ملّاك وصيانة شاملة خلال السنة الأولى من الاستلام.</p></li>
+    <div class="jline" aria-hidden="true"><i id="jfill"></i></div>
+    <ol class="steps" id="steps">
+      <li class="step on"><span class="n tnum">01</span><h3>اختر</h3><p>تصفّح المشاريع حسب الحي وعدد الغرف والميزانية، واطّلع على الأسعار والمخططات.</p></li>
+      <li class="step on"><span class="n tnum">02</span><h3>زُر</h3><p>احجز زيارة للمشروع مع مستشار المبيعات في الموعد الذي يناسبك.</p></li>
+      <li class="step on"><span class="n tnum">03</span><h3>احجز</h3><p>اختر وحدتك وأكمل إجراءات الحجز والتعاقد مع فريق المبيعات.</p></li>
+      <li class="step on"><span class="n tnum">04</span><h3>استلم</h3><p>استلم وحدتك مع ضمانات للهيكل الإنشائي والتمديدات والقواطع.</p></li>
+      <li class="step on"><span class="n tnum">05</span><h3>ما بعد البيع</h3><p>اتحاد ملّاك وصيانة شاملة خلال السنة الأولى من الاستلام.</p></li>
     </ol>
   </div>
 </section>
 
-<section class="section" id="warranty">
-  <div class="container">
-    <div class="section-head center">
-      <p class="eyebrow">راحة بال تدوم</p>
-      <h2>ضمانات تحمي بيتك وخدمات ترافقك بعد البيع</h2>
-    </div>
-    <div class="grid2">
-      <article class="svc"><h3>الضمانات</h3>
-        <ul class="ticks"><li>الهيكل الإنشائي</li><li>التأسيسات والتمديدات</li><li>القواطع والأفياش</li><li>المصاعد</li></ul></article>
-      <article class="svc"><h3>خدمات ما بعد البيع</h3>
-        <ul class="ticks"><li>اتحاد الملّاك في السنة الأولى</li><li>صيانة شاملة بعد الاستلام</li><li>نظافة وصيانة الممرات والمصاعد والخزانات</li><li>التنسيق بين الملّاك</li></ul></article>
+<section class="band solid" id="warranty">
+  <div class="wrap">
+    <p class="eyebrow">راحة بال تدوم</p>
+    <h2 class="h2">ضمانات تحمي بيتك، وخدمات <em>ترافقك بعد البيع</em></h2>
+    <div class="wgrid">
+      <article class="panel" data-reveal>
+        <h3>الضمانات</h3>
+        <p>ضمانات على المكوّنات الأساسية للمبنى.</p>
+        <ul class="dl"><li>الهيكل الإنشائي</li><li>التأسيسات والتمديدات</li><li>القواطع والأفياش</li><li>المصاعد</li></ul>
+      </article>
+      <article class="panel" data-reveal>
+        <h3>خدمات ما بعد البيع</h3>
+        <p>خدمات تتولاها آرك بعد تسليم الوحدات.</p>
+        <ul class="dl"><li>اتحاد الملّاك في السنة الأولى</li><li>صيانة شاملة بعد الاستلام</li><li>نظافة وصيانة الممرات والمصاعد والخزانات</li><li>التنسيق بين الملّاك</li></ul>
+      </article>
     </div>
     <p class="fine">تُوضَّح تفاصيل الضمانات ومددها في عقد كل وحدة.</p>
   </div>
 </section>
 
-<section class="section alt" id="partners">
-  <div class="container">
-    <div class="section-head center">
-      <p class="eyebrow">شركاؤنا</p>
-      <h2>شركاء النجاح</h2>
-    </div>
-    <ul class="partners" id="partnerList"></ul>
+<section class="partners solid" aria-label="شركاء النجاح">
+  <div class="wrap"><p class="eyebrow">شركاء النجاح</p></div>
+  <div class="marq" dir="ltr"><div class="mtrack" id="mtrack"></div></div>
+</section>
+
+<section class="band solid" id="news">
+  <div class="wrap">
+    <p class="eyebrow">أخبار آرك</p>
+    <h2 class="h2">آخر الأخبار</h2>
+    <div class="ngrid" id="ngrid"></div>
   </div>
 </section>
 
-<section class="section" id="news">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">أخبار آرك</p>
-      <h2>آخر الأخبار</h2>
-    </div>
-    <div class="grid3" id="newsGrid"></div>
-  </div>
-</section>
-
-<section class="cta">
-  <div class="container cta-in">
-    <div>
-      <p class="eyebrow">زيارتك الأولى تبدأ من هنا</p>
-      <h2>شاهد بيتك القادم على أرض الواقع</h2>
-      <p>احجز زيارة للمشروع الذي يناسبك مع مستشار المبيعات، أو تحدّث معنا الآن.</p>
-    </div>
+<section class="cta" aria-label="احجز زيارة">
+  <div class="wrap">
+    <p class="eyebrow">زيارتك الأولى تبدأ من هنا</p>
+    <h2 class="cta-t" id="ctaTitle">شاهد بيتك القادم <em>على أرض الواقع</em></h2>
+    <p>احجز زيارة للمشروع الذي يناسبك مع مستشار المبيعات، أو تحدّث معنا الآن على <span class="tnum" dir="ltr">050 000 0000</span>.</p>
     <div class="cta-btns">
-      <a class="btn btn-gold" id="ctaWa" href="#contact">احجز زيارة</a>
-      <a class="btn btn-ghost" href="tel:+966500000000" dir="ltr">050 000 0000</a>
+      <a class="btn btn-gold magnetic js-visit" href="#contact">احجز زيارتك عبر واتساب</a>
+      <a class="btn btn-line magnetic" href="#contact">اترك بياناتك</a>
     </div>
   </div>
 </section>
 
-<section class="section" id="contact">
-  <div class="container contact">
+<section class="band solid" id="contact">
+  <div class="wrap contact">
     <div>
       <p class="eyebrow">تواصل معنا</p>
-      <h2>نسعد بخدمتك</h2>
-      <p>اترك بياناتك وسيتواصل معك أحد مستشارينا خلال ساعات العمل.</p>
+      <h2 class="h2">نسعد بخدمتك</h2>
+      <p class="sub">اترك بياناتك وسيتواصل معك أحد مستشارينا خلال ساعات العمل.</p>
       <ul class="info">
-        <li><b>الجوال:</b> <a href="tel:+966500000000" dir="ltr">+966 50 000 0000</a></li>
-        <li><b>البريد:</b> <a href="mailto:info@example.com">info@example.com</a></li>
-        <li><b>المقر الرئيسي:</b> جدة، المملكة العربية السعودية</li>
-        <li><b>ساعات العمل:</b> السبت – الخميس، 9 ص – 9 م</li>
+        <li><span>الجوال</span><b class="tnum" dir="ltr">+966 50 000 0000</b></li>
+        <li><span>البريد</span><b>info@example.com</b></li>
+        <li><span>المقر الرئيسي</span><b>جدة، المملكة العربية السعودية</b></li>
+        <li><span>ساعات العمل</span><b>السبت – الخميس، 9 ص – 9 م</b></li>
       </ul>
     </div>
     <form class="form" id="contactForm" novalidate>
-      <label>الاسم الكامل<input name="name" required autocomplete="name"></label>
-      <label>رقم الجوال<input name="phone" type="tel" inputmode="tel" required dir="ltr" placeholder="05XXXXXXXX" autocomplete="tel"></label>
-      <label>نوع الطلب
-        <select name="topic"><option>حجز زيارة لمشروع</option><option>الاستفسار عن وحدة</option><option>الاستثمار العقاري</option><option>أخرى</option></select>
-      </label>
-      <label>رسالتك<textarea name="msg" rows="4"></textarea></label>
-      <button class="btn btn-gold" type="submit">إرسال عبر واتساب</button>
-      <p class="note" id="formNote" role="status"></p>
+      <label for="cName">الاسم الكامل<input id="cName" name="name" required autocomplete="name"></label>
+      <label for="cPhone">رقم الجوال<input id="cPhone" name="phone" type="tel" inputmode="tel" required dir="ltr" placeholder="05XXXXXXXX" autocomplete="tel"></label>
+      <label class="full" for="cTopic">نوع الطلب
+        <select id="cTopic" name="topic"><option>حجز زيارة لمشروع</option><option>الاستفسار عن وحدة</option><option>الاستثمار العقاري</option><option>أخرى</option></select></label>
+      <label class="full" for="cMsg">رسالتك<textarea id="cMsg" name="msg" rows="4"></textarea></label>
+      <div class="full"><button class="btn btn-gold" type="submit">إرسال عبر واتساب</button></div>
+      <p class="note full" id="formNote" role="status"></p>
     </form>
   </div>
 </section>
 </main>
 
-<footer class="footer">
-  <div class="container foot">
-    <div class="foot-brand">
-      <div class="brand light"><img src="assets/logo.svg" alt="" width="40" height="40"><span><b>آرك الماسية</b><small>العقارية</small></span></div>
-      <p>تطوير عقاري وبناء وتسويق وتشغيل لمشاريع سكنية في أحياء جدة، مع خدمات ما بعد البيع واتحاد الملّاك.</p>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo" aria-label="آرك الماسية العقارية"><img src="assets/logo.svg" alt="" width="40" height="40"><span><b>آرك الماسية</b><small>العقارية</small></span></a>
+        <p>تطوير عقاري وبناء وتسويق وتشغيل لمشاريع سكنية في أحياء جدة، مع خدمات ما بعد البيع واتحاد الملّاك.</p>
+      </div>
+      <div><h4>استكشف</h4><nav aria-label="روابط التذييل"><a href="#projects">المشاريع</a><a href="#districts">الأحياء</a><a href="#about">عن آرك</a><a href="#news">الأخبار</a><a href="#contact">تواصل معنا</a></nav></div>
+      <div><h4>الأحياء</h4><nav aria-label="الأحياء" id="footDistricts"></nav></div>
+      <div><h4>تواصل</h4><ul><li class="tnum" dir="ltr">050 000 0000</li><li>info@example.com</li><li>جدة</li></ul></div>
     </div>
-    <div><h4>استكشف</h4><a href="#projects">المشاريع</a><a href="#districts">الأحياء</a><a href="#about">عن آرك</a><a href="#news">الأخبار</a><a href="#contact">تواصل معنا</a></div>
-    <div><h4>الأحياء</h4><div id="footDistricts"></div></div>
+    <div class="copy"><span>© <span id="yr"></span> آرك الماسية العقارية. جميع الحقوق محفوظة.</span><span>آخر تحديث للأسعار والوحدات: <span id="upd"></span></span></div>
   </div>
-  <div class="container copy">© <span id="yr"></span> آرك الماسية العقارية. جميع الحقوق محفوظة. · آخر تحديث للأسعار والوحدات: <span id="upd"></span></div>
 </footer>
 
-<a class="wa" id="waBtn" href="#" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
-  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.2 17L2 22l5.1-1.3A11 11 0 1 0 20.5 3.5zM12 20a8.9 8.9 0 0 1-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.9 8.9 0 1 1 12 20zm4.9-6.6c-.3-.1-1.6-.8-1.8-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.3 7.3 0 0 1-3.6-3.1c-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg>
+<a class="wa" id="waBtn" href="#contact" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.2 17L2 22l5.1-1.3A11 11 0 1 0 20.5 3.5zM12 20a8.9 8.9 0 0 1-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.9 8.9 0 1 1 12 20zm4.9-6.6c-.3-.1-1.6-.8-1.8-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.3 7.3 0 0 1-3.6-3.1c-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg>
 </a>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/scene.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
