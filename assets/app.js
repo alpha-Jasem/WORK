@@ -53,19 +53,19 @@ function facade(p) {
   for (let b = 0; b < n; b++) {
     const x = x0 + b * (bw + gap), fl = p.floors - (n > 1 && b % 2 ? 1 : 0);
     const h = fl * flH + 10, y = G - h, cols = Math.max(2, Math.round(bw / 24)), cw = (bw - 12) / cols;
-    out += `<rect x="${x}" y="${y}" width="${bw}" height="${h}" fill="url(#fb)" stroke="rgba(214,184,120,.35)"/>`;
+    out += `<rect x="${x}" y="${y}" width="${bw}" height="${h}" fill="url(#fb)" stroke="rgba(201,138,111,.35)"/>`;
     for (let f = 0; f < fl; f++) for (let c = 0; c < cols; c++) {
       const lit = rnd() < litP;
-      out += `<rect x="${(x + 6 + c * cw + 2).toFixed(1)}" y="${(y + 6 + f * flH + 3).toFixed(1)}" width="${(cw - 4).toFixed(1)}" height="${(flH - 8).toFixed(1)}" rx="1" fill="${lit ? "#f1d79a" : "#1a2741"}"${lit ? ` opacity="${(0.5 + rnd() * 0.5).toFixed(2)}"` : ""}/>`;
+      out += `<rect x="${(x + 6 + c * cw + 2).toFixed(1)}" y="${(y + 6 + f * flH + 3).toFixed(1)}" width="${(cw - 4).toFixed(1)}" height="${(flH - 8).toFixed(1)}" rx="1" fill="${lit ? "#f2cdb9" : "#2e3754"}"${lit ? ` opacity="${(0.5 + rnd() * 0.5).toFixed(2)}"` : ""}/>`;
     }
     if (p.annex) {
       const aw = bw * 0.55, ax = x + (bw - aw) / 2, ay = y - flH;
-      out += `<rect x="${ax.toFixed(1)}" y="${ay.toFixed(1)}" width="${aw.toFixed(1)}" height="${flH}" fill="url(#fb)" stroke="rgba(214,184,120,.35)"/>`;
-      out += `<rect x="${(ax + 6).toFixed(1)}" y="${(ay + 5).toFixed(1)}" width="${(aw - 12).toFixed(1)}" height="${(flH - 10).toFixed(1)}" fill="#f1d79a" opacity=".35"/>`;
+      out += `<rect x="${ax.toFixed(1)}" y="${ay.toFixed(1)}" width="${aw.toFixed(1)}" height="${flH}" fill="url(#fb)" stroke="rgba(201,138,111,.35)"/>`;
+      out += `<rect x="${(ax + 6).toFixed(1)}" y="${(ay + 5).toFixed(1)}" width="${(aw - 12).toFixed(1)}" height="${(flH - 10).toFixed(1)}" fill="#f2cdb9" opacity=".35"/>`;
     }
-    out += `<line x1="${x - 3}" y1="${y}" x2="${x + bw + 3}" y2="${y}" stroke="#d6b878" stroke-width="2"/>`;
+    out += `<line x1="${x - 3}" y1="${y}" x2="${x + bw + 3}" y2="${y}" stroke="#c98a6f" stroke-width="2"/>`;
   }
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><defs><linearGradient id="fb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#18253f"/><stop offset="1" stop-color="#0b1222"/></linearGradient></defs>${out}<line x1="0" y1="${G}" x2="${W}" y2="${G}" stroke="rgba(214,184,120,.45)"/></svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><defs><linearGradient id="fb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#46527a"/><stop offset="1" stop-color="#2c3550"/></linearGradient></defs>${out}<line x1="0" y1="${G}" x2="${W}" y2="${G}" stroke="rgba(201,138,111,.45)"/></svg>`;
 }
 
 function match(p) {

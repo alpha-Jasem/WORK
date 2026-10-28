@@ -17,7 +17,7 @@
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
 
-  const BG = new THREE.Color("#070c18");
+  const BG = new THREE.Color("#363f5c");
   const scene = new THREE.Scene();
   scene.background = BG;
   scene.fog = new THREE.FogExp2(BG, small ? 0.03 : 0.026);
@@ -28,7 +28,7 @@
   const env = new THREE.Scene();
   const dome = new THREE.SphereGeometry(20, 32, 16);
   const dc = [], dp = dome.attributes.position;
-  const cTop = new THREE.Color("#fff1cf"), cMid = new THREE.Color("#a07a3a"), cLow = new THREE.Color("#3a2a12");
+  const cTop = new THREE.Color("#fff1ea"), cMid = new THREE.Color("#a3634c"), cLow = new THREE.Color("#3a2418");
   for (let i = 0; i < dp.count; i++) {
     const y = dp.getY(i) / 20, c = new THREE.Color();
     if (y > 0) c.copy(cMid).lerp(cTop, Math.pow(y, 1.6)); else c.copy(cMid).lerp(cLow, Math.min(1, -y * 1.6));
@@ -36,17 +36,17 @@
   }
   dome.setAttribute("color", new THREE.Float32BufferAttribute(dc, 3));
   env.add(new THREE.Mesh(dome, new THREE.MeshBasicMaterial({ side: THREE.BackSide, vertexColors: true })));
-  [[8, 6, 6, "#fff4dc"], [-9, 3, -4, "#ffd690"], [0, 12, -8, "#ffffff"], [-4, -6, 9, "#ffc870"], [7, -7, -6, "#ffdca0"], [0, -12, 0, "#c99a4a"]].forEach(([x, y, z, c]) => {
+  [[8, 6, 6, "#fff1ea"], [-9, 3, -4, "#f2c2a8"], [0, 12, -8, "#ffffff"], [-4, -6, 9, "#e8a98c"], [7, -7, -6, "#f5cdb8"], [0, -12, 0, "#b4745e"]].forEach(([x, y, z, c]) => {
     const m = new THREE.Mesh(new THREE.PlaneGeometry(5, 3), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide }));
     m.position.set(x, y, z); m.lookAt(0, 0, 0); env.add(m);
   });
   scene.environment = pmrem.fromScene(env, 0.035).texture;
 
   // إضاءة
-  scene.add(new THREE.HemisphereLight(0x8fa6e8, 0x0a0f1d, 0.45));
-  const key = new THREE.DirectionalLight(0xffe0a3, 1.4); key.position.set(-10, 18, 12); scene.add(key);
-  const rim = new THREE.PointLight(0x6f95ff, 2.4, 50); rim.position.set(8, 9, -8); scene.add(rim);
-  const glint = new THREE.PointLight(0xfff3d6, 4, 12); scene.add(glint);
+  scene.add(new THREE.HemisphereLight(0x8496c8, 0x1d2439, 0.45));
+  const key = new THREE.DirectionalLight(0xffe2d4, 1.4); key.position.set(-10, 18, 12); scene.add(key);
+  const rim = new THREE.PointLight(0x7086c4, 2.4, 50); rim.position.set(8, 9, -8); scene.add(rim);
+  const glint = new THREE.PointLight(0xfff0e8, 4, 12); scene.add(glint);
 
   // ---------- الماسة ----------
   const gem = new THREE.Group();
@@ -54,25 +54,25 @@
     .map(([x, y]) => new THREE.Vector2(x, y));
   const gemGeo = new THREE.LatheGeometry(profile, 8);
   const gemMat = new THREE.MeshPhysicalMaterial({
-    color: 0xe9c57a, metalness: 1, roughness: 0.18, flatShading: true,
+    color: 0xd08f72, metalness: 1, roughness: 0.18, flatShading: true,
     clearcoat: 1, clearcoatRoughness: 0.08, envMapIntensity: 1.7,
   });
   gem.add(new THREE.Mesh(gemGeo, gemMat));
   gem.add(new THREE.LineSegments(new THREE.EdgesGeometry(gemGeo, 1),
-    new THREE.LineBasicMaterial({ color: 0xfff0c8, transparent: true, opacity: 0.5 })));
+    new THREE.LineBasicMaterial({ color: 0xffe6da, transparent: true, opacity: 0.5 })));
 
   // هالة ضوئية خلف الماسة
   const glowTex = (() => {
     const c = document.createElement("canvas"); c.width = c.height = 128;
     const g = c.getContext("2d"), r = g.createRadialGradient(64, 64, 0, 64, 64, 64);
-    r.addColorStop(0, "rgba(255,226,160,.55)"); r.addColorStop(0.35, "rgba(214,184,120,.18)"); r.addColorStop(1, "rgba(214,184,120,0)");
+    r.addColorStop(0, "rgba(255,214,196,.4)"); r.addColorStop(0.35, "rgba(201,138,111,.18)"); r.addColorStop(1, "rgba(201,138,111,0)");
     g.fillStyle = r; g.fillRect(0, 0, 128, 128);
     return new THREE.CanvasTexture(c);
   })();
   const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
   glow.scale.set(10, 10, 1); gem.add(glow);
 
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0xd6b878, transparent: true, opacity: 0.45, side: THREE.DoubleSide });
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0xc98a6f, transparent: true, opacity: 0.45, side: THREE.DoubleSide });
   const ring1 = new THREE.Mesh(new THREE.RingGeometry(2.55, 2.57, 160), ringMat);
   const ring2 = new THREE.Mesh(new THREE.RingGeometry(3.1, 3.115, 160), ringMat.clone());
   ring2.material.opacity = 0.22;
@@ -86,7 +86,7 @@
     const g = c.getContext("2d"); g.fillStyle = "#000"; g.fillRect(0, 0, 64, 256);
     for (let y = 6; y < 250; y += 10) for (let x = 5; x < 60; x += 9) {
       if (Math.random() < 0.42) {
-        g.fillStyle = `rgba(255,${200 + Math.random() * 40 | 0},${120 + Math.random() * 70 | 0},${0.45 + Math.random() * 0.55})`;
+        g.fillStyle = `rgba(255,${205 + Math.random() * 30 | 0},${180 + Math.random() * 50 | 0},${0.45 + Math.random() * 0.55})`;
         g.fillRect(x, y, 5, 5);
       }
     }
@@ -110,8 +110,8 @@
 
   const boxGeo = new THREE.BoxGeometry(1, 1, 1); boxGeo.translate(0, 0.5, 0);
   const bMat = new THREE.MeshStandardMaterial({
-    color: 0x101b31, roughness: 0.5, metalness: 0.55, envMapIntensity: 0.6,
-    emissive: 0xffcf86, emissiveMap: windowTex, emissiveIntensity: 0,
+    color: 0x3a4566, roughness: 0.5, metalness: 0.55, envMapIntensity: 0.6,
+    emissive: 0xffd2bc, emissiveMap: windowTex, emissiveIntensity: 0,
   });
   const city = new THREE.InstancedMesh(boxGeo, bMat, B.length);
   const tint = new THREE.Color();
@@ -133,12 +133,12 @@
 
   // الأرضية والشبكة والساحة
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(240, 240),
-    new THREE.MeshStandardMaterial({ color: 0x060a14, roughness: 0.85, metalness: 0.3 }));
+    new THREE.MeshStandardMaterial({ color: 0x0b0f1c, roughness: 0.95, metalness: 0.05, envMapIntensity: 0.25 }));
   ground.rotation.x = -Math.PI / 2; scene.add(ground);
-  const grid = new THREE.GridHelper(N * SP + 20, Math.round((N * SP + 20) / (SP * 4 / 2)), 0xd6b878, 0x1c2840);
+  const grid = new THREE.GridHelper(N * SP + 20, Math.round((N * SP + 20) / (SP * 4 / 2)), 0xc98a6f, 0x56628a);
   grid.material.transparent = true; grid.material.opacity = 0.16; grid.position.y = 0.01; scene.add(grid);
   const plaza = new THREE.Mesh(new THREE.RingGeometry(2.3, 2.36, 128),
-    new THREE.MeshBasicMaterial({ color: 0xd6b878, transparent: true, opacity: 0.7, side: THREE.DoubleSide }));
+    new THREE.MeshBasicMaterial({ color: 0xc98a6f, transparent: true, opacity: 0.7, side: THREE.DoubleSide }));
   plaza.rotation.x = -Math.PI / 2; plaza.position.y = 0.02; scene.add(plaza);
 
   // أضواء السيارات في الشوارع
@@ -161,7 +161,7 @@
   const DN = small ? 260 : 600, dPos = new Float32Array(DN * 3);
   for (let i = 0; i < DN; i++) dPos.set([(rnd() - 0.5) * 50, rnd() * 22, (rnd() - 0.5) * 50], i * 3);
   const dGeo = new THREE.BufferGeometry(); dGeo.setAttribute("position", new THREE.BufferAttribute(dPos, 3));
-  const dust = new THREE.Points(dGeo, new THREE.PointsMaterial({ color: 0xe8cf95, size: 0.06, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false }));
+  const dust = new THREE.Points(dGeo, new THREE.PointsMaterial({ color: 0xf0c4ae, size: 0.06, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false }));
   scene.add(dust);
 
   // ---------- مسار الكاميرا حسب التمرير ----------
