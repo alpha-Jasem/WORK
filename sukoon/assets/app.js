@@ -50,7 +50,7 @@
     $('#projTrack').innerHTML = list.map((p, i) => {
       const media = p.img
         ? `<img src="${IMG(p.img)}" alt="${L(p.name)}" loading="lazy">`
-        : `<div class="pc-blank"><img src="assets/img/mark-white.svg" alt=""><span>${t().soon}</span></div>`;
+        : `<div class="pc-blank"><span>${t().soon}</span></div>`;
       return `<article class="pc">
         <div class="pc-media">${media}<span class="badge s-${p.status}">${t().status[p.status]}</span><b class="pc-code">${p.code === 'shops' ? '' : p.code}</b></div>
         <div class="pc-body">
@@ -70,7 +70,7 @@
 
   function renderInvest() {
     $('#rets').innerHTML = RETURNS.map(r => `
-      <div class="ret"><b>${r.min}–${r.max}<em>%</em></b><h3>${L(r.t)}</h3><p>${L(r.d)}</p></div>`).join('');
+      <div class="ret"><b>${r.min}–${r.max}<em>%</em></b><i class="ret-bar" aria-hidden="true"><s style="--h:${r.max / 30}"></s></i><h3>${L(r.t)}</h3><p>${L(r.d)}</p></div>`).join('');
     calc();
   }
 
@@ -237,8 +237,19 @@
       },
     });
 
-    /* 4) الرحلة: خط يمتد */
-    gsap.fromTo('#steps', { '--fill': 0 }, { '--fill': 1, ease: 'none', scrollTrigger: { trigger: '#steps', start: 'top 80%', end: 'bottom 60%', scrub: true } });
+    /* 4) الرحلة: كل خطوة يمتلئ خطها بالتتابع */
+    $$('#steps li').forEach((li, i) => ScrollTrigger.create({
+      trigger: li, start: 'top 85%', once: true,
+      onEnter: () => setTimeout(() => li.classList.add('on'), (i % 4) * 160),
+    }));
+
+    /* زر واتساب العائم يظهر بعد المشهد الافتتاحي */
+    ScrollTrigger.create({ trigger: '#scene', start: 'top top', end: 'bottom 70%', onToggle: st => $('#waFloat').classList.toggle('off', st.isActive) });
+
+    gsap.from('.ret-bar s', { scaleY: 0, duration: 1.4, ease: 'power3.out', stagger: 0.15, scrollTrigger: { trigger: '#rets', start: 'top 75%' } });
+
+    /* حركة عمق خفيفة للصور */
+    gsap.fromTo('.about-img img', { yPercent: -6, scale: 1.14 }, { yPercent: 6, scale: 1.14, ease: 'none', scrollTrigger: { trigger: '.about-img', start: 'top bottom', end: 'bottom top', scrub: true } });
 
     /* 5) ظهور تدريجي */
     $$('.sec-head, .about-grid > *, .sv, .ret, .calc, .gu, .steps li, .qt, .val, .pt-wall, .contact-grid > *, .shops-in').forEach(el =>
